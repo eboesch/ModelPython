@@ -21,9 +21,9 @@ nx = 100  # number of grid points in horizontal direction
 dx = xl / nx  # horizontal resolution [m]
 thl = 150.0  # domain depth  [K]
 nz = 60  # vertical resolution
-dt = 5  # time step [s]
+dt = 1  # time step [s]
 diff = 0.02  # (horizontal) diffusion coefficient
-time = 60  # integration time [s]
+time = 12*60  # integration time [s]
 
 # Topography
 # -------------------------------------------------

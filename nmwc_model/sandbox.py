@@ -38,8 +38,30 @@ x0 = (nxb - 1) / 2.0 + 1 #get the middle of the x axis
 #print(x0)
 x = (x + 1 - x0) * dx # translate x by x0 and scale by dx
 print(x)
+
+#rec = np.where(np.abs(x)< topowd/2, topomx, 0)
+#print(rec)
+# make central plateau
+width_in = topowd
+width_out = 2*width_in
+height = topomx
+
+top = np.where(np.abs(x)< width_in, height, 0)
+#print(top)
+
+# make right downward slope
+top2 = np.where((width_in < x) & (x < width_out), (x-width_out)*height/(width_in-width_out), top)
+#print(top2)
+
+# make right downward slope
+top3 = np.where((-width_in > x) & (x > -width_out), (x+width_out)*height/(width_out-width_in), top2)
+#print(top3)
+#print(top3-top)
+
+
+
 toponf = topomx * np.exp(-(x / float(topowd)) ** 2) #make gaussian curve
-print(toponf)
+#print(toponf)
 
 
 # overwrites all but first and last entry of topo
@@ -50,7 +72,7 @@ topo[1:-1, 0] = toponf[1:-1] + 0.25 * (
 
 
 
-
+"""
 # plot
 op = arg_parser()
 # get command line arguments
@@ -87,7 +109,7 @@ plt.contour(
 plt.plot(var.xp[0, :], var.topo, "-k")
 plt.ylim(args.zlim)
 
-"""
+
     for varname in varnames:
         # Determine range for values and ticks
         valRange = np.arange(
@@ -150,7 +172,8 @@ plt.ylim(args.zlim)
             cs = ax2.plot(
                 var.xp[0, :], var.accumulated_precipitation[timestep, :], "b-"
             )
-            """
+            
 
 
 # plt.show()
+"""

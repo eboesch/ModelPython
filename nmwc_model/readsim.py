@@ -6,6 +6,7 @@
 
 import numpy as np
 import sys
+from topography import Topography
 
 
 class dotdict(dict):
@@ -88,10 +89,29 @@ def readsim(filename, varnames):
     x = np.arange(var.nx, dtype="float32")
     x0 = (var.nx - 1) / 2.0 + 1
     x = (x + 1 - x0) * var.dx
+
+    """
     toponf = var.topomx * np.exp(-(x / float(var.topowd)) ** 2)
     var.topo[1:-1] = toponf[1:-1] + 0.25 * (
         toponf[0:-2] - 2.0 * toponf[1:-1] + toponf[2:]
     )
+    """
+    #var.topo[1:-1] = Topography.rounded_topo_f(x, var.topowd, 2*var.topowd, 2*var.topomx)
+    var.topo[1:-1] = Topography.rounded_topo_f(x, var.topowd*3/2, 2*var.topowd, 2*var.topomx)
+    #var.topo[1:-1] = Topography.double_trapez_topo(x, var.topowd/2, var.topowd*3/2, var.topowd*5/2, var.topowd*7/2, var.topomx/2, var.topomx)
+    
+    #var.topo[1:-1] = Topography.gauss_topo(x, var.topowd, var.topomx)
+    var.topo[1:-1] = Topography.trapez_topo(x, var.topowd, var.topowd +1e-13, var.topomx)
+    #var.topo[1:-1] = Topography.trapez_topo(x, 0, var.topowd, var.topomx)
+    #var.topo[1:-1] = Topography.trapez_topo(x, var.topowd/2, var.topowd*3/2, var.topomx)
+    #var.topo[1:-1] = Topography.rounded_topo_f(x, var.topowd/2, var.topowd*3/2, var.topomx)
+
+    #var.topo[1:-1] = Topography.double_gauss_topo(x, var.topowd, var.topowd, var.topomx)
+    #var.topo[1:-1] = Topography.double_trapez_topo(x, var.topowd/2, var.topowd/2 +1e-13, var.topowd*3/2, var.topowd*3/2 +1e-13, var.topomx/2, var.topomx)
+    #var.topo[1:-1] = Topography.double_trapez_topo(x, 0, var.topowd*2/2, var.topowd*2/2, var.topowd*3/2, var.topomx/2, var.topomx)
+    #var.topo[1:-1] = Topography.double_trapez_topo(x, var.topowd/2, var.topowd*2/2, var.topowd*4/2, var.topowd*5/2, var.topomx/2, var.topomx)
+    
+    
 
     # calculate theta levels
     var.dth = var.thl / var.nz

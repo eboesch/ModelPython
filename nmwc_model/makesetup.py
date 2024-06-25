@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import sys
+from topography import Topography
 
 from nmwc_model.meteo_utilities import rrmixv1
 from nmwc_model.namelist import (
@@ -27,6 +28,24 @@ from nmwc_model.namelist import (
     z00,
 )
 
+"""
+def gauss_topo(topo, x):
+    toponf = topomx * np.exp(-(x / float(topowd)) ** 2)
+
+    topo[1:-1, 0] = toponf[1:-1] + 0.25 * (
+        toponf[0:-2] - 2.0 * toponf[1:-1] + toponf[2:]
+    )
+
+    return topo
+
+def rect_topo(topo, x, width, height):
+    topo[:, 0] = np.where(np.abs(x)< width/2, height, 0)
+
+    return topo
+
+def trapez_topo(topo, x, width_out, width_in, height):
+    return topo
+"""
 
 def maketopo(topo, nxb):
     """ Topography definition.
@@ -50,11 +69,12 @@ def maketopo(topo, nxb):
 
     x0 = (nxb - 1) / 2.0 + 1 #get the middle of the x axis
     x = (x + 1 - x0) * dx
-    toponf = topomx * np.exp(-(x / float(topowd)) ** 2)
+    
+    #topo = gauss_topo(topo, x)
+    #topo = rect_topo(topo, x, topowd, topomx)
+    topo[1:-1, 0] = Topography.rect_topo(x, topowd, topomx)
 
-    topo[1:-1, 0] = toponf[1:-1] + 0.25 * (
-        toponf[0:-2] - 2.0 * toponf[1:-1] + toponf[2:]
-    )
+    #print(topo)
 
     return topo
 
