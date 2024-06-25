@@ -3,15 +3,15 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import MultipleLocator
 from nmwc_model.readsim import readsim
 
-"""
-out = np.load('output.npz')
-print(out['z'][34])
 
-print(np.abs(-5))
+out = np.load('output_topo_test.npz')
+print(out['topotype'])
+
+#print(np.abs(-5))
 
 #for i in range(10,5,(-1)):
 #    print(i)
-"""
+
 nx = 100
 nb = 2
 nxb = nx + 2 * nb  # x range of unstaggered variable
@@ -37,7 +37,7 @@ x = np.arange(0, nxb, dtype=np.float64)
 x0 = (nxb - 1) / 2.0 + 1 #get the middle of the x axis
 #print(x0)
 x = (x + 1 - x0) * dx # translate x by x0 and scale by dx
-print(x)
+#print(x)
 
 #rec = np.where(np.abs(x)< topowd/2, topomx, 0)
 #print(rec)
