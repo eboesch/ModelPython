@@ -10,7 +10,7 @@ and all subfunctions.
 
 # Output control
 # -------------------------------------------------
-out_fname = "output_triang"  # file name of output
+out_fname = "output_trapez0.03"  # file name of output
 iout = 360  # write every iout-th time-step into the output file
 iiniout = 1  # write initial field (0 = no, 1 = yes)
 
@@ -22,12 +22,12 @@ dx = xl / nx  # horizontal resolution [m]
 thl = 150.0  # domain depth  [K]
 nz = 60  # vertical resolution
 dt = 1  # time step [s]
-diff = 0.04  # (horizontal) diffusion coefficient
+diff = 0.03  # (horizontal) diffusion coefficient
 time = 12*60*60  # integration time [s]
 
 # Topography
 # -------------------------------------------------
-topotype = "triang" # one of the following: gauss, double_gauss, rect, double_rect, triang, double_triang, trapez, double_trapez
+topotype = "trapez" # one of the following: gauss, double_gauss, rect, double_rect, triang, double_triang, trapez, double_trapez
 topomx = 1000  # mountain height [m]
 topowd = 50000  # mountain half width [m]
 topotim = 1800  # mountain growth time [s]

@@ -90,15 +90,6 @@ def readsim(filename, varnames):
     x = np.arange(var.nx, dtype="float32")
     x0 = (var.nx - 1) / 2.0 + 1
     x = (x + 1 - x0) * var.dx
-
-    """
-    toponf = var.topomx * np.exp(-(x / float(var.topowd)) ** 2)
-    var.topo[1:-1] = toponf[1:-1] + 0.25 * (
-        toponf[0:-2] - 2.0 * toponf[1:-1] + toponf[2:]
-    )
-    """
-    #var.topo[1:-1] = Topography.rounded_topo_f(x, var.topowd, 2*var.topowd, 2*var.topomx)
-    #var.topo[1:-1] = Topography.rounded_topo_f(x, var.topowd*3/2, 2*var.topowd, 2*var.topomx)
     
     var.topo[1:-1] = fetch_topo(x, var.topowd, var.topomx, var.topotype)
     
