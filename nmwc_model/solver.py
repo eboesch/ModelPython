@@ -549,7 +549,7 @@ if __name__ == "__main__":
         # *** time step for isentropic mass density ***
         # *** edit here ***
 
-        snew = prog_isendens(sold, snow, unow, dtdx, dthetadt=dthetadt) #snew = prog_isendens(sold, snow, unow, dtdx, dthetadt=None)
+        snew = prog_isendens(sold, snow, unow, dtdx, dthetadt=dthetadt)
         #
         # *** Exercise 2.1 isentropic mass density ***
 
@@ -573,7 +573,7 @@ if __name__ == "__main__":
         # *** time step for momentum ***
         # *** edit here ***
                 
-        unew = prog_velocity(uold, unow, mtg, dtdx, dthetadt=dthetadt) #unew = prog_velocity(uold, unow, mtg, dtdx, dthetadt=None)
+        unew = prog_velocity(uold, unow, mtg, dtdx, dthetadt=dthetadt) 
 
         #
         # *** Exercise 2.1 velocity ***

@@ -51,9 +51,6 @@ def prog_isendens(sold, snow, unow, dtdx, dthetadt=None):
     if idthdt == 1:
         k = np.arange(1,nz-1)
         ii,kk = np.ix_(i,k)
-        #snew[ii,kk] = snew[ii,kk] - dt/dth*(snow[ii,kk+1]- snow[ii,kk-1])*(dthetadt[ii,kk+1] - dthetadt[ii,kk])/dt
-        #snew[ii,kk] = snew[ii,kk] - dt/dth*(snow[ii,kk+1]- snow[ii,kk-1])*( (dthetadt[ii,kk+2]+ dthetadt[ii,kk+1])/2 - (dthetadt[ii,kk]+dthetadt[ii,kk-1])/2)/(2*dt)
-        #snew[ii,kk] = snew[ii,kk] - dt/dth*(snow[ii,kk+1]- snow[ii,kk-1])*( (dthetadt[ii,kk+2]+ dthetadt[ii,kk+1])/2 - (dthetadt[ii,kk+1]+dthetadt[ii,kk])/2)/(dt)
         snew[ii,kk] = snew[ii,kk] - dt/dth*( snow[ii,kk+1]*(dthetadt[ii,kk+2]+ dthetadt[ii,kk+1])/2 
                                             - snow[ii,kk-1]*(dthetadt[ii,kk]+dthetadt[ii,kk-1])/2 )
         

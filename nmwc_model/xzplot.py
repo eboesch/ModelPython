@@ -30,7 +30,7 @@ from matplotlib.ticker import MultipleLocator
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 import matplotlib.widgets as widgets
 import matplotlib.gridspec as gridspec
-from matplotlib.animation import FuncAnimation
+from matplotlib.animation import FuncAnimation, PillowWriter
 
 from nmwc_model.readsim import readsim
 
